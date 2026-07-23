@@ -14,7 +14,7 @@ def fonction_ex_2(ti):
     print(f"Valeur reçue depuis XCom : {valeur}")
  
 with DAG(
-    dag_id="dag_formation",
+    dag_id="dag_formation4",
     start_date=datetime(2025, 1, 1),
     schedule=None,
     catchup=False,
