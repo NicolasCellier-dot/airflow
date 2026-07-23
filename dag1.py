@@ -26,13 +26,14 @@ with DAG(
 
     )
 
-    hello = BashOperator(
+    toto = BashOperator(
         task_id="toto",
         bash_command="echo 'toto'; hostname; date"
     )
 
-    hello = BashOperator(
+    titi = BashOperator(
         task_id="titi",
         bash_command="echo 'titi'; hostname; date"
     )
- 
+
+toto >> hello >> titi
