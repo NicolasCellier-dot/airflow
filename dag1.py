@@ -25,4 +25,14 @@ with DAG(
         bash_command="echo 'Airflow est prêt sur cette EC2'; hostname; date"
 
     )
+
+    hello = BashOperator(
+        task_id="toto",
+        bash_command="echo 'toto'; hostname; date"
+    )
+
+    hello = BashOperator(
+        task_id="titi",
+        bash_command="echo 'titi'; hostname; date"
+    )
  
