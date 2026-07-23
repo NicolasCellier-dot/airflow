@@ -22,7 +22,7 @@ with DAG(
 
         tache01 = BashOperator(
 
-            task_id="tache1",
+            task_id="tache01",
             bash_command="echo 'tache01'; hostname; date"
         )
 
@@ -35,13 +35,15 @@ with DAG(
 
     with TaskGroup(group_id="groupe_2") as groupe_2:
         tache03 = BashOperator(
-            task_id="tache3",
+            task_id="tache03",
             bash_command="echo 'tache03'; hostname; date"
         )
 
         tache04 = BashOperator(
-            task_id="tache4",
+            task_id="tache04",
             bash_command="echo 'tache04'; hostname; date"
         )
+
+        [tache03 , tache04]
 
 groupe_1 >> groupe_2
