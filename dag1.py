@@ -22,8 +22,7 @@ with DAG(
     hello = BashOperator(
 
         task_id="hello",
-
-        bash_command="echo 'Airflow est prêt sur cette EC2'; hostname; date"
+        bash_command="echo 'Airflow est prêt sur cette EC2'; hostname; date",
         trigger_rule=TriggerRule.ONE_FAILED
     )
 
