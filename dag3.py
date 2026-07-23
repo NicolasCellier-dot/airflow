@@ -3,7 +3,9 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.utils.task_group import TaskGroup
- 
+from airflow.model import Variable
+
+test_variable = Variable.get("key_1")
 with DAG(
 
     dag_id="dag_formation3",
@@ -28,7 +30,7 @@ with DAG(
 
         tache02 = BashOperator(
             task_id="tache02",
-            bash_command="exit 1"
+            bash_command="echo {test_variable}"
         )
 
         [tache01 , tache02]
