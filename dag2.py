@@ -1,25 +1,44 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+from airflow.utils.trigger_rule import TriggerRule
  
 with DAG(
+
     dag_id="dag_formation2",
+
     start_date=datetime(2025, 1, 1),
+
     schedule=None,
+
     catchup=False,
+
     tags=["guide"],
+
 ) as dag:
-    hello = BashOperator(
-        task_id="hello2",
-        bash_command="echo 'Airflow est prêt sur cette EC2'; hostname; date"
+
+    tache1 = BashOperator(
+
+        task_id="tache1",
+        bash_command="echo 'tache1'; hostname; date"
     )
 
-    toto2 = BashOperator(
-        task_id="toto2",
-        bash_command="echo 'toto'; hostname; date"
+    tache2 = BashOperator(
+        task_id="tache2",
+        bash_command="exit 1"
     )
 
-    titi2 = BashOperator(
-        task_id="titi2",
-        bash_command="echo 'titi'; hostname; date"
+    tache3 = BashOperator(
+        task_id="tache3",
+        bash_command="echo 'tache3'; hostname; date",
+        trigger_rule=TriggerRule.ONE_SUCCESS
     )
+
+    tache4 = BashOperator(
+        task_id="tache4",
+        bash_command="echo 'tache4'; hostname; date",
+        trigger_rule=TriggerRule.ONE_FAILED
+    )
+
+tache1 >> tache3 
+tache2 >> tache4 
