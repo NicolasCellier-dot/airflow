@@ -36,4 +36,4 @@ with DAG(
         bash_command="echo 'titi'; hostname; date"
     )
 
-toto >> hello >> titi
+toto >> [hello , titi]
