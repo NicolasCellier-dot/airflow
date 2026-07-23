@@ -1,7 +1,5 @@
 from datetime import datetime
-
 from airflow import DAG
-
 from airflow.operators.bash import BashOperator
 from airflow.utils.trigger_rule import TriggerRule
  
@@ -38,7 +36,7 @@ with DAG(
 
     ex_4 = BashOperator(
         task_id="ex_4",
-        bash_command="exit 1'; hostname; date"
+        bash_command="exit 1"
     )
 
 toto >> ex_4 >> [hello , titi]
