@@ -28,7 +28,7 @@ with DAG(
 
     toto = BashOperator(
         task_id="toto",
-        bash_command="echo 'toto'; hostname; date"
+        bash_command="sleep 10"
     )
 
     titi = BashOperator(
