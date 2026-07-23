@@ -30,7 +30,7 @@ with DAG(
 
         tache02 = BashOperator(
             task_id="tache02",
-            bash_command="echo {test_variable}"
+            bash_command="echo {{test_variable}}"
         )
 
         [tache01 , tache02]
