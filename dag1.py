@@ -3,6 +3,7 @@ from datetime import datetime
 from airflow import DAG
 
 from airflow.operators.bash import BashOperator
+from airflow.utils.trigger_rule import TriggerRule
  
 with DAG(
 
@@ -23,7 +24,7 @@ with DAG(
         task_id="hello",
 
         bash_command="echo 'Airflow est prêt sur cette EC2'; hostname; date"
-
+        trigger_rule=TriggerRule.ONE_FAILED
     )
 
     toto = BashOperator(
@@ -36,4 +37,9 @@ with DAG(
         bash_command="echo 'titi'; hostname; date"
     )
 
-toto >> [hello , titi]
+    ex_4 = BashOperator(
+        task_id="ex_4",
+        bash_command="exit 1'; hostname; date"
+    )
+
+toto >> ex_4 >> [hello , titi]
